@@ -90,12 +90,12 @@ public class RecipeUI {
             // 閉じるためのハイフン
             System.out.println("-----------------------------------");
         }
-
     }
 
     /**
      * 設問2: 新規登録機能
-     * ユーザーからレシピ名と主な材料を入力させ、RecipeFileHandlerを使用してrecipes.txtに新しいレシピを追加します。
+     * ユーザーからレシピ名と主な材料を入力させ、
+     * RecipeFileHandlerを使用してrecipes.txtに新しいレシピを追加します。
      *
      * @throws java.io.IOException 入出力が受け付けられない
      */
@@ -106,9 +106,12 @@ public class RecipeUI {
         // 材料を入力
         System.out.println("Enter main ingredients (comma separated): ");
         String ingredients = reader.readLine();
-
+        /**
+         * (recipeName, ingredients)に値が入っていることは確認できたので
+         * fileHandler.addRecipe(recipeName, ingredients);
+         * か、fileHandlerで間違えている
+         */
         fileHandler.addRecipe(recipeName, ingredients);
-        System.out.println("Recipe added successfully.");
     }
 
     /**

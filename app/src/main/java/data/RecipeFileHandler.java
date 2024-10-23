@@ -54,6 +54,7 @@ public class RecipeFileHandler {
      * @param ingredients 材料名
      */
     //
+
     String recipeName;
     String ingredients;
 
@@ -62,8 +63,10 @@ public class RecipeFileHandler {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         String contentToWrite = recipeName + ", " + ingredients;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(contentToWrite);
+            writer.newLine(); // 改行する
+            System.out.println("Recipe added successfully.");
         } catch (IOException e) {
             System.out.println("Error writing file:" + e.getMessage());
         }
