@@ -85,4 +85,3 @@ class RecipeUITest {
         assertThat(outContent.toString()).contains("Invalid choice. Please select again.");
     }
 }
-
