@@ -11,8 +11,6 @@ public class RecipeUI {
     private BufferedReader reader;
     private RecipeFileHandler fileHandler;
 
-    BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in));
-
     public RecipeUI() {
         reader = new BufferedReader(new InputStreamReader(System.in));
         fileHandler = new RecipeFileHandler();
@@ -39,17 +37,17 @@ public class RecipeUI {
                 switch (choice) {
                     case "1":
                         // 設問1: 一覧表示機能
-                        System.out.println("Recipes:");
+                        System.out.println("\nRecipes:");
                         displayRecipes();
                         break;
                     case "2":
                         // 設問2: 新規登録機能
-                        System.out.println("Enter recipe name: ");
+                        System.out.println("\nEnter recipe name: ");
                         addNewRecipe();
                         break;
                     case "3":
                         // 設問3: 検索機能
-                        System.out.println("Enter search query (e.g., 'name=Tomato&ingredient=Garlic'): ");
+                        System.out.println("\nEnter search query (e.g., 'name=Tomato&ingredient=Garlic'): ");
                         searchRecipe();
                         break;
                     case "4":
@@ -65,11 +63,6 @@ public class RecipeUI {
         }
     }
 
-    public static void main(String[] args) {
-        RecipeFileHandler rfh = new RecipeFileHandler();
-
-    }
-
     /**
      * 設問1: 一覧表示機能
      * RecipeFileHandlerから読み込んだレシピデータを整形してコンソールに表示します。
@@ -82,9 +75,19 @@ public class RecipeUI {
         } else {
             // リストの範囲で繰り返し
             for (String recipe : recipes) {
+
+                /**
+                 * 一つ目の「,」とその後ろを切り離したい → データ.split(" 記号 ",いくつに分割するか)
+                 * └この場会、データは1行分のほうのrecipeで、記号は","、2個（料理と材料）に分割
+                 * String型の配列「parts」に代入する=パーツ1に料理、2に材料が入る
+                 */
+                String[] parts = recipe.split(",", 2);
                 System.out.println("-----------------------------------");
-                System.out.println(recipe);
+                System.out.println("Recipe Name: " + parts[0]);
+                System.out.println("Main Ingredients: " + parts[1]);
             }
+
+            // 閉じるためのハイフン
             System.out.println("-----------------------------------");
         }
 
@@ -120,8 +123,7 @@ public class RecipeUI {
 
         fileHandler.searchRecipe(query);
 
-        System.out.println(); // 行明けのための改行
-        System.out.println("Search Results:" + "_______________"); // 結果を表示
+        System.out.println("\nSearch Results:" + "_______________"); // 結果を表示
 
         // 一致レシピなし
         System.out.println("No recipes found matching the criteria.");

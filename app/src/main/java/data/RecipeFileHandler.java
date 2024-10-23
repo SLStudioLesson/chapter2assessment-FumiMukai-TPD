@@ -33,7 +33,7 @@ public class RecipeFileHandler {
         // リスト作る
         ArrayList<String> recipes = new ArrayList<>();
         // リストに情報を格納
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 recipes.add(line);
@@ -57,7 +57,7 @@ public class RecipeFileHandler {
     String recipeName;
     String ingredients;
 
-    public void addRecipe(String recipeName, String ingredients) throws IOException {
+    public void addRecipe(String recipeName, String ingredients) {
         // RecopeUIから追加メニューの情報を受け取ってrecipes.txtへ記録
         this.recipeName = recipeName;
         this.ingredients = ingredients;
@@ -80,12 +80,8 @@ public class RecipeFileHandler {
     String query;
 
     public void searchRecipe(String query) {
-        try(){
         // クエリを受け取る
         this.query = query;
         // 検索はindexを使う？？？
-        } catch(IOException e){
-            System.out.println("Error search file:"+e.getMessage());
-        }
     }
 }
